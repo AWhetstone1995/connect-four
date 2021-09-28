@@ -11,7 +11,7 @@ class Player
 
   def player_turn
     puts "#{name}, please choose a column to drop a disc"
-    puts 'Invalid choice, please choose a column number between 0 and 6' until verify_input(gets.chomp)
+    puts 'Error, please choose a number between 0 and 6' until verify_input(gets.chomp)
   end
 
   def verify_input(number)
