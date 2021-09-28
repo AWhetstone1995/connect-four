@@ -14,8 +14,10 @@ class Game
 
   def round
     board.print_board
+    board.push_disc(0, @player1)
+    board.push_disc(1, @player1)
+    board.print_board
   end
 end
 
-# game = Game.new
-# game.round
+
