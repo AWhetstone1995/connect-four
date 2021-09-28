@@ -7,8 +7,8 @@ class Game
   attr_reader :board
 
   def initialize
-    @player1 = Player.new('X', 'Player 1')
-    @player2 = Player.new('O', 'Player 2')
+    @player1 = Player.new('X', 'Player 1', 'red')
+    @player2 = Player.new('O', 'Player 2', 'light_yellow')
     @board = Board.new
   end
 
