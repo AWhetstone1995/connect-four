@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'pry-byebug'
 
 class Player
   attr_accessor :name, :marker
@@ -19,6 +18,3 @@ class Player
     return number.to_i if number.match?(/^[0-6]$/)
   end
 end
-
-# player = Player.new('x', 'p1')
-# player.player_turn
