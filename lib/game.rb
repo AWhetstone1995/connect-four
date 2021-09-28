@@ -19,5 +19,3 @@ class Game
     board.print_board
   end
 end
-
-
