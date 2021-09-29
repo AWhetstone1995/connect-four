@@ -28,9 +28,7 @@ describe Player do
       end
 
       it 'Completes loop and returns error message once' do
-        puts_statement = "#{player_input.name}, please choose a column to drop a disc"
         error_message = 'Error, please choose a number between 0 and 6'
-        expect(player_input).to receive(:puts).with(puts_statement).once
         expect(player_input).to receive(:puts).with(error_message).once
         player_input.player_turn
       end

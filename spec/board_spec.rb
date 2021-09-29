@@ -25,4 +25,25 @@ describe Board do
       end
     end
   end
+
+  describe "#valid_input?" do
+    subject(:board_valid) { described_class.new }
+    it "Returns true when column contains a nil" do
+      expect(board_valid.valid_input?(0)).to eq(true)
+    end
+
+    context "When column is full" do
+      let(:player1) { Player.new('P1') }
+
+      before do
+        6.times do
+          board_valid.push_disc(0, player1)
+        end
+      end
+
+      it "Returns nil" do
+        expect(board_valid.valid_input?(0)).to eq(false)
+      end
+    end
+  end
 end
