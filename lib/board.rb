@@ -10,14 +10,23 @@ class Board
     @board = Array.new(7) { Array.new(6) }
   end
 
-  # push disc into first nil slot on a given column
+  # push player disc into first nil slot on a given column
   def push_disc(column, player)
+    # binding.pry
+    return false unless valid_input?(column)
+
     board[column].each_index do |index|
       if board[column][index].nil?
         board[column][index] = player
-        break
+        return true
       end
     end
+  end
+
+  def valid_input?(column)
+    return false unless board[column].include?(nil)
+
+    true
   end
 
   def print_board
