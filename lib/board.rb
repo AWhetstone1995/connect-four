@@ -10,15 +10,14 @@ class Board
     @board = Array.new(7) { Array.new(6) }
   end
 
+  # push disc into first nil slot on a given column
   def push_disc(column, player)
-    # binding.pry
-    board[column].each_index { |index|
+    board[column].each_index do |index|
       if board[column][index].nil?
         board[column][index] = player
         break
       end
-    }
-    # board[column][1] = player
+    end
   end
 
   def print_board
@@ -29,7 +28,6 @@ class Board
         if board[n][i].nil?
           print " #{Display::EMPTY_CELL} #{Display::VERTICAL_LINE}"
         else
-          # binding.pry
           print " #{Display::FILLED_CELL.colorize(board[n][i].color.to_sym)} #{Display::VERTICAL_LINE}"
         end
       end
@@ -38,6 +36,18 @@ class Board
     print Display::BOTTOM_LINE
     print "#{Display::COLUMN_NUMBERS}\n"
   end
-end
 
-# puts "test".colorize(:red)
+  private
+
+  def check_horizontal
+
+  end
+
+  def check_vertical
+
+  end
+
+  def check_diagonal
+
+  end
+end
