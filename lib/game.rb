@@ -28,7 +28,7 @@ class Game
     puts "#{player.name}, please choose a column to drop a disc"
     choice = player.player_turn
     loop do
-      break if @board.valid_input?(choice)
+      break if @board.column_full?(choice)
 
       puts 'That column is filled, try again.'
       choice = player.player_turn

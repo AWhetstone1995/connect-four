@@ -29,7 +29,7 @@ describe Board do
   describe "#valid_input?" do
     subject(:board_valid) { described_class.new }
     it "Returns true when column contains a nil" do
-      expect(board_valid.valid_input?(0)).to eq(true)
+      expect(board_valid.column_full?(0)).to eq(true)
     end
 
     context "When column is full" do
@@ -42,7 +42,7 @@ describe Board do
       end
 
       it "Returns nil" do
-        expect(board_valid.valid_input?(0)).to eq(false)
+        expect(board_valid.column_full?(0)).to eq(false)
       end
     end
   end
