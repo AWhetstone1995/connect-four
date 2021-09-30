@@ -35,8 +35,10 @@ class Board
     return true if check_horizontal_right(arr[0], arr[1])
     return true if check_vertical_up(arr[0], arr[1])
     return true if check_vertical_down(arr[0], arr[1])
-    return true if check_diagonal_left(arr[0], arr[1])
-    return true if check_diagonal_right(arr[0], arr[1])
+    return true if check_diagonal_left_up(arr[0], arr[1])
+    return true if check_diagonal_left_down(arr[0], arr[1])
+    return true if check_diagonal_right_up(arr[0], arr[1])
+    return true if check_diagonal_right_down(arr[0], arr[1])
 
     false
   end
@@ -105,7 +107,7 @@ class Board
     false
   end
 
-  def check_diagonal_right(column, row)
+  def check_diagonal_right_up(column, row)
     return false if column + 3 > 6
     return false if row + 3 > 5
     if board[column][row] == board[column + 1][row + 1] &&
@@ -117,9 +119,21 @@ class Board
     false
   end
 
-  def check_diagonal_left(column, row)
+  def check_diagonal_right_down(column, row)
+    return false if column + 3 > 6
     return false if (column - 3).negative?
-    return false if (row - 3).negative?
+    if board[column][row] == board[column + 1][row - 1] &&
+       board[column + 1][row - 1] == board[column + 2][row - 2] &&
+       board[column + 2][row - 2] == board[column + 3][row - 3]
+      return true
+    end
+
+    false
+  end
+
+  def check_diagonal_left_up(column, row)
+    return false if (column - 3).negative?
+    return false if row + 3 > 5
     if board[column][row] == board[column - 1][row + 1] &&
        board[column - 1][row + 1] == board[column - 2][row + 2] &&
        board[column - 2][row + 2] == board[column - 3][row + 3]
@@ -128,4 +142,18 @@ class Board
 
     false
   end
+
+  def check_diagonal_left_down(column, row)
+    return false if (column - 3).negative?
+    return false if (row - 3).negative?
+    if board[column][row] == board[column - 1][row - 1] &&
+       board[column - 1][row - 1] == board[column - 2][row - 2] &&
+       board[column - 2][row - 2] == board[column - 3][row - 3]
+      return true
+    end
+
+    false
+  end
+
+
 end
