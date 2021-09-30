@@ -3,12 +3,14 @@
 require_relative '../lib/board'
 require_relative '../lib/player'
 
+require 'pry-byebug'
+
 describe Board do
   describe "#push_disc" do
     context "When player chooses column" do
       subject(:board_disc) { described_class.new }
       let(:player1) { Player.new('P1') }
-      let(:player2) { Player.new('P2')}
+      let(:player2) { Player.new('P2') }
 
       it "Inserts disc into the right column" do
         player_input = 0
@@ -26,7 +28,7 @@ describe Board do
     end
   end
 
-  describe "#valid_input?" do
+  describe "#column_full?" do
     subject(:board_valid) { described_class.new }
     it "Returns true when column contains a nil" do
       expect(board_valid.column_full?(0)).to eq(true)
@@ -43,6 +45,53 @@ describe Board do
 
       it "Returns nil" do
         expect(board_valid.column_full?(0)).to eq(false)
+      end
+    end
+  end
+
+  describe "#check_winner" do
+    subject(:board_winner) { described_class.new }
+    let(:player1) { Player.new('P1') }
+
+    context "When column does not have 4 in a row" do
+      it "Returns false" do
+        result = board_winner.check_winner
+        expect(result).to eq(false)
+      end
+    end
+
+    context "When column does have 4 in a row" do
+      before do
+        4.times do
+          board_winner.push_disc(0, player1)
+        end
+      end
+
+      it "Returns true" do
+        result = board_winner.check_winner
+        # binding.pry
+        expect(result).to eq(true)
+      end
+    end
+
+    context "When row does not have 4 in a row" do
+      it "Returns false" do
+        result = board_winner.check_winner
+        expect(result).to eq(false)
+      end
+    end
+
+    context "When row does have 4 in a row" do
+      before do
+        board_winner.push_disc(0, player1)
+        board_winner.push_disc(1, player1)
+        board_winner.push_disc(2, player1)
+        board_winner.push_disc(3, player1)
+      end
+
+      it "Returns true when row does have 4 in a row" do
+        result = board_winner.check_winner
+        expect(result).to eq(true)
       end
     end
   end
