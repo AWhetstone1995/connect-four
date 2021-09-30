@@ -34,7 +34,6 @@ class Game
       choice1 = player_move(@player1)
       break if game_over?(board.push_disc(choice1, @player1), @player1)
 
-      board.display_board
       choice2 = player_move(@player2)
       break if game_over?(board.push_disc(choice2, @player2), @player2)
     end
