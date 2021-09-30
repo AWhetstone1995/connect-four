@@ -7,8 +7,8 @@ class Game
   attr_reader :board
 
   def initialize
-    @player1 = Player.new('Player 1', 'red')
-    @player2 = Player.new('Player 2', 'light_yellow')
+    @player1 = Player.new('Player 1', "\e[31m")
+    @player2 = Player.new('Player 2', "\e[93m")
     @board = Board.new
     @winning_player = nil
   end

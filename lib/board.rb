@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require_relative 'display'
-require_relative 'player'
-require 'colorize'
+# require_relative 'player'
+# require 'colorize'
 
 class Board
   attr_accessor :board
@@ -51,7 +51,8 @@ class Board
         if board[n][i].nil?
           print " #{Display::EMPTY_CELL} #{Display::VERTICAL_LINE}"
         else
-          print " #{Display::FILLED_CELL.colorize(board[n][i].color.to_sym)} #{Display::VERTICAL_LINE}"
+          # print " #{Display::FILLED_CELL.colorize(board[n][i].color.to_sym)} #{Display::VERTICAL_LINE}"
+          print " \e#{board[n][i].color}#{Display::FILLED_CELL}\e[m #{Display::VERTICAL_LINE}"
         end
       end
       puts "\n"
