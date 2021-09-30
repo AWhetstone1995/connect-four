@@ -17,6 +17,10 @@ class Player
     number.to_i
   end
 
+  def computer_turn
+    rand(0..6)
+  end
+
   def verify_input(number)
     return number.to_i if number.match?(/^[0-6]$/)
   end
