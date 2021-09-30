@@ -120,9 +120,9 @@ class Board
   def check_diagonal_left(column, row)
     return false if (column - 3).negative?
     return false if (row - 3).negative?
-    if board[column][row] == board[column - 1][row - 1] &&
-       board[column - 1][row - 1] == board[column - 2][row - 2] &&
-       board[column - 2][row - 2] == board[column - 3][row - 3]
+    if board[column][row] == board[column - 1][row + 1] &&
+       board[column - 1][row + 1] == board[column - 2][row + 2] &&
+       board[column - 2][row + 2] == board[column - 3][row + 3]
       return true
     end
 
