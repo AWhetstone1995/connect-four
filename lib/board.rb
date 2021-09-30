@@ -20,11 +20,25 @@ class Board
     end
   end
 
-  def valid_input?(column)
+  def column_full?(column)
     return false unless board[column].include?(nil)
 
     true
   end
+
+  def display_board
+    print_board
+  end
+
+  def check_winner
+    return true if check_horizontal
+    return true if check_vertical
+
+    # check_diagonal
+    false
+  end
+
+  private
 
   def print_board
     print Display::TOP_LINE
@@ -43,17 +57,50 @@ class Board
     print "#{Display::COLUMN_NUMBERS}\n"
   end
 
-  private
-
   def check_horizontal
+    result = false
+    0.upto(5) do |row|
+      next if count_empty_horizontal_cells(row) >= 4
 
+      0.upto(3) do |column|
+        if board[column][row] == board[column + 1][row] &&
+           board[column + 1][row] == board[column + 2][row] &&
+           board[column + 2][row] == board[column + 3][row]
+          return true
+        end
+      end
+    end
+    result
   end
 
   def check_vertical
+    result = false
+    0.upto(6) do |column|
+      next if count_empty_vertical_cells(column) >= 4
 
+      0.upto(2) do |row|
+        if board[column][row] == board[column][row + 1] &&
+           board[column][row + 1] == board[column][row + 2] &&
+           board[column][row + 2] == board[column][row + 3]
+          return true
+        end
+      end
+    end
+    result
   end
 
   def check_diagonal
 
   end
+
+  def count_empty_vertical_cells(column)
+    board[column].count(&:nil?)
+  end
+
+  def count_empty_horizontal_cells(row)
+    board.each.count { |column| column[row].nil? }
+  end
 end
+
+# board = Board.new
+# p board.check_winner

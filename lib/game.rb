@@ -15,12 +15,15 @@ class Game
 
   def round
     loop do
-      board.print_board
+      board.display_board
       choice1 = player_move(@player1)
       board.push_disc(choice1, @player1)
-      board.print_board
+      break if game_over?
+
+      board.display_board
       choice2 = player_move(@player2)
       board.push_disc(choice2, @player2)
+      break if game_over?
     end
   end
 
@@ -34,5 +37,10 @@ class Game
       choice = player.player_turn
     end
     choice
+  end
+
+  def game_over?
+    board.check_winner
+    # binding.pry
   end
 end
