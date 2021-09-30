@@ -17,13 +17,11 @@ class Game
     loop do
       board.display_board
       choice1 = player_move(@player1)
-      board.push_disc(choice1, @player1)
-      break if game_over?
+      break if game_over?(board.push_disc(choice1, @player1))
 
       board.display_board
       choice2 = player_move(@player2)
-      board.push_disc(choice2, @player2)
-      break if game_over?
+      break if game_over?(board.push_disc(choice2, @player2))
     end
   end
 
@@ -39,8 +37,13 @@ class Game
     choice
   end
 
-  def game_over?
-    board.check_winner
+  def game_over?(arr)
+    board.check_winner(arr)
     # binding.pry
   end
 end
+
+# board = Board.new
+# player = Player.new('P1')
+
+# p board.push_disc(0, player)
