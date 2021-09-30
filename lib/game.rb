@@ -38,6 +38,7 @@ class Game
       choice2 = player_move(@player2)
       break if game_over?(board.push_disc(choice2, @player2), @player2)
     end
+    board.display_board
     game_end
   end
 
@@ -50,6 +51,7 @@ class Game
       choice2 = computer_move(@player2)
       break if game_over?(board.push_disc(choice2, @player2), @player2)
     end
+    board.display_board
     game_end
   end
 
