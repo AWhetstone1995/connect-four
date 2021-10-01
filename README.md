@@ -6,4 +6,4 @@ As of 9/30/2021, this project is completed. However there are some additional ad
 
 UPDATING AI
 
-Currently, the AI that the user plays against is very primitive. It does not take any strategy into account. It might be fruitful to look into the minimax algorithm and attempt to implement it so the AI will try and block the player from winning.
+Currently, the AI that the user plays against is very primitive. It does not take any strategy into account. It might be fruitful to look into the minimax algorithm and attempt to implement it so the AI will try and block the player from winning while also assuring that it will always choose it's own winning move if it exists.
