@@ -43,6 +43,12 @@ class Board
     false
   end
 
+  def tie?
+    return true if board.flatten.count(&:nil?).zero?
+
+    false
+  end
+
   private
 
   def print_board
@@ -154,6 +160,4 @@ class Board
 
     false
   end
-
-
 end

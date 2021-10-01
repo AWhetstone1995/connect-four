@@ -2,6 +2,7 @@
 
 require_relative 'player'
 require_relative 'board'
+require 'pry-byebug'
 
 class Game
   attr_reader :board
@@ -33,10 +34,12 @@ class Game
       board.display_board
       choice1 = player_move(@player1)
       break if game_over?(board.push_disc(choice1, @player1), @player1)
+      break if board.tie?
 
       board.display_board
       choice2 = player_move(@player2)
       break if game_over?(board.push_disc(choice2, @player2), @player2)
+      break if board.tie?
     end
     board.display_board
     game_end
@@ -47,9 +50,11 @@ class Game
       board.display_board
       choice1 = player_move(@player1)
       break if game_over?(board.push_disc(choice1, @player1), @player1)
+      break if board.tie?
 
       choice2 = computer_move(@player2)
       break if game_over?(board.push_disc(choice2, @player2), @player2)
+      break if board.tie?
     end
     board.display_board
     game_end
@@ -87,13 +92,17 @@ class Game
   end
 
   def game_end
-    puts "#{@winning_player.name} won the game."
-    puts "Would you like to play again? [Y/N]"
+    if @winning_player.nil?
+      puts "It's a tie.. Play again? [Y/N]"
+    else
+      puts "#{@winning_player.name} won the game."
+      puts 'Would you like to play again? [Y/N]'
+    end
     choice = gets.chomp
     if choice == 'y'
       reset_game
     else
-      puts "Thanks for playing!"
+      puts 'Thanks for playing!'
     end
   end
 
